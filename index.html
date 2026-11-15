@@ -251,7 +251,7 @@
 
     <hr class="border-yt-border my-3" />
 
-    <!-- LDR Live Tracker Card (Styled seamlessly for YouTube Dark) -->
+    <!-- LDR Live Tracker Card -->
     <div class="bg-[#181818] border border-yt-border/80 rounded-xl p-3.5 mx-1">
       <div class="flex items-center justify-between mb-2">
         <span class="text-[11px] font-bold uppercase tracking-wider text-yt-red flex items-center gap-1.5">
@@ -318,8 +318,8 @@
       <button onclick="setCategory('ldr', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
         LDR Moments
       </button>
-      <button onclick="setCategory('call', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
-        Sleep Call 😴
+      <button onclick="setCategory('memories', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
+        Momen Kita ✨
       </button>
       <button onclick="setCategory('countdown', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
         Nunggu Ketemu ✈️
@@ -332,7 +332,7 @@
       </button>
     </div>
 
-    <!-- Mobile Search Input (Visible only on small screens) -->
+    <!-- Mobile Search Input -->
     <div class="px-4 pb-3 sm:hidden">
       <input 
         type="text" 
@@ -497,15 +497,15 @@
       {
         id: 1,
         src: 'video2.mp4',
-        category: 'call',
-        duration: '08:12',
-        title: 'Sleep Call & Virtual Date: Nemenin Kamu Sampai Ketiduran 😴📞',
+        category: 'memories',
+        duration: '02:45',
+        title: 'Kompilasi Momen Random & Senyum Kamu yang Paling Aku Kangenin ✨🤍',
         channel: 'Danial & Deandra',
         views: '1,8 jt x ditonton',
         time: 'Favorit Kita',
         likes: '520 rb',
         gradient: 'from-indigo-950 via-neutral-900 to-black',
-        description: `Salah satu momen paling aku suka di hubungan LDR kita: dengerin cerita kamu seharian lewat layar HP sampai salah satu dari kita ketiduran duluan.\n\nMakasih ya udah selalu sabar ngadepin kesibukan aku dan selalu nyempetin waktu buat kita.`
+        description: `Kumpulan potongan video dan senyum kamu yang selalu jadi obat capek paling ampuh di tengah jarak kita.\n\nSetiap kali kangen atau hari lagi berat, muter video ini aja rasanya udah cukup bikin tenang. Makasih ya udah selalu jadi rumah paling nyaman buat aku.`
       },
       {
         id: 2,
@@ -518,7 +518,7 @@
         time: 'Soon!',
         likes: '777 rb',
         gradient: 'from-amber-950 via-neutral-900 to-black',
-        description: `Setiap hari yang lewat artinya satu hari lebih dekat buat aku ketemu kamu langsung, bukan lagi lewat video call.\n\nJaga kesehatan baik-baik ya di sana, jangan telat makan, dan jangan lupa kalau di Jember ada aku yang selalu kangen kamu.`
+        description: `Setiap hari yang lewat artinya satu hari lebih dekat buat aku ketemu kamu langsung, bukan lagi lewat layar HP.\n\nJaga kesehatan baik-baik ya di sana, jangan telat makan, dan jangan lupa kalau di Jember ada aku yang selalu kangen kamu.`
       },
       {
         id: 3,
@@ -683,7 +683,6 @@
       }
     }
 
-    // Coba autoplay saat load & langsung nyalakan begitu layar disentuh/diklik pertama kali
     window.addEventListener('DOMContentLoaded', () => {
       playMusic();
       const unlockAudio = () => {
@@ -728,7 +727,6 @@
       document.getElementById('modal-meta').textContent = `${video.views} • ${video.time} • #DanialDeandra #LDR`;
       document.getElementById('modal-desc').textContent = video.description;
 
-      // Kecilkan volume lagu latar saat nonton video di modal supaya suara video terdengar jelas
       if (!bgMusic.paused) {
         bgMusic.volume = 0.15;
       }
@@ -746,7 +744,6 @@
       modal.classList.add('hidden');
       document.body.style.overflow = '';
 
-      // Kembalikan volume lagu Shape of My Heart
       if (!bgMusic.paused) {
         bgMusic.volume = 0.65;
       }
