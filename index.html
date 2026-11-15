@@ -1,921 +1,871 @@
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube - Danial & Deandra LDR Special</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        ytRed: '#FF0000',
-                        ytDarkBg: '#0f0f0f',
-                        ytHeaderBg: '#0f0f0f',
-                        ytCardBg: '#1f1f1f',
-                        ytHover: '#272727',
-                        ytBorder: '#3f3f3f',
-                        ytGrayText: '#aaaaaa',
-                    },
-                    fontFamily: {
-                        sans: ['Roboto', 'sans-serif'],
-                        ytBrand: ['Oswald', 'Roboto', 'sans-serif']
-                    }
-                }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube - Danial & Deandra</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 20'%3E%3Cpath fill='%23FF0000' d='M27.4 3.1c-.3-1.2-1.2-2.1-2.4-2.4C22.8 0 14 0 14 0S5.2 0 3 .7C1.8 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.2 2.1 2.4 2.4 2.2.7 11 .7 11 .7s8.8 0 11-.7c1.2-.3 2.1-1.2 2.4-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9z'/%3E%3Cpath fill='%23FFF' d='M11.2 14.3L18.5 10l-7.3-4.3v8.6z'/%3E%3C/svg%3E" />
+  
+  <!-- Google Fonts: Roboto (YouTube UI) & Oswald (YouTube Wordmark) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'Arial', 'sans-serif'],
+            yt: ['Oswald', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            yt: {
+              bg: '#0f0f0f',
+              surface: '#212121',
+              chip: '#272727',
+              chipHover: '#3f3f3f',
+              border: '#303030',
+              text: '#f1f1f1',
+              muted: '#aaaaaa',
+              red: '#ff0000',
             }
+          }
         }
-    </script>
-    <!-- Google Fonts: Roboto & Oswald -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #0f0f0f;
-            color: #f1f1f1;
-            font-family: 'Roboto', sans-serif;
-            overflow-x: hidden;
-        }
+      }
+    }
+  </script>
 
-        /* Custom YouTube Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f0f0f;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3f3f3f;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555555;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0f0f0f;
+      color: #f1f1f1;
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+    }
 
-        /* Video Canvas Styling */
-        .video-canvas {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* Custom Scrollbar ala YouTube Dark */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f0f0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #717171;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0a0a0;
+    }
 
-        /* Heart Splash Animation for Like Button */
-        @keyframes heartBurst {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .heart-burst {
-            animation: heartBurst 0.4s ease-out;
-        }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
-        /* Hide horizontal scrollbar for filter chips */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+    /* Equalizer Animation untuk Shape of My Heart */
+    @keyframes eqBar1 {
+      0%, 100% { height: 4px; }
+      50% { height: 14px; }
+    }
+    @keyframes eqBar2 {
+      0%, 100% { height: 14px; }
+      50% { height: 5px; }
+    }
+    @keyframes eqBar3 {
+      0%, 100% { height: 7px; }
+      50% { height: 15px; }
+    }
+    .eq-playing .bar-1 { animation: eqBar1 0.8s ease-in-out infinite; }
+    .eq-playing .bar-2 { animation: eqBar2 0.6s ease-in-out infinite; }
+    .eq-playing .bar-3 { animation: eqBar3 0.9s ease-in-out infinite; }
+
+    /* Heart Burst Animation */
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-45px) scale(1.4); opacity: 0; }
+    }
+    .heart-burst {
+      animation: floatUp 0.8s ease-out forwards;
+    }
+  </style>
 </head>
-<body class="bg-ytDarkBg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-red-600 selection:text-white">
+<body class="bg-yt-bg text-yt-text antialiased selection:bg-yt-red selection:text-white">
 
-    <!-- 1. TOP NAVBAR (EXACT YOUTUBE UI) -->
-    <header class="fixed top-0 left-0 right-0 h-14 bg-ytHeaderBg/95 backdrop-blur-md z-40 px-4 flex items-center justify-between border-b border-ytBorder/30">
-        <!-- Left: Hamburger + YouTube Brand Logo -->
-        <div class="flex items-center gap-4">
-            <button id="sidebarToggle" class="p-2 hover:bg-ytHover rounded-full transition-colors text-white" title="Panduan YouTube">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
-            
-            <!-- YouTube Brand Logo replica with LDR heart badge -->
-            <a href="#" class="flex items-center gap-1 select-none group">
-                <div class="relative flex items-center">
-                    <!-- YouTube Red Icon -->
-                    <svg class="w-8 h-6 text-ytRed fill-current" viewBox="0 0 68 48">
-                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/>
-                        <path d="M45 24L27 14v20z" fill="#FFFFFF"/>
-                    </svg>
-                </div>
-                <div class="flex items-center font-ytBrand tracking-tight ml-1 text-2xl font-bold text-white leading-none">
-                    <span>YouTube</span>
-                    <span class="text-[10px] bg-red-600 text-white font-sans font-bold px-1.5 py-0.5 rounded-full ml-1 flex items-center gap-0.5 uppercase tracking-wider">
-                        <span>LDR</span>
-                        <span class="text-[9px]">❤️</span>
-                    </span>
-                </div>
-            </a>
+  <!-- Background Audio: Shape of My Heart -->
+  <audio id="bg-music" src="shapeofmyheart.mp3" loop preload="auto"></audio>
+
+  <!-- ================= NAVBAR TOP (YOUTUBE HEADER) ================= -->
+  <header class="fixed top-0 left-0 right-0 h-14 bg-yt-bg/95 backdrop-blur-md z-40 px-4 flex items-center justify-between gap-3">
+    
+    <!-- Left: Hamburger & Official-Style YouTube Logo -->
+    <div class="flex items-center gap-4 shrink-0">
+      <button id="sidebar-toggle" class="p-2 rounded-full hover:bg-yt-chip transition" aria-label="Menu">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"></path>
+        </svg>
+      </button>
+
+      <a href="#" onclick="resetFilter(event)" class="flex items-center gap-1 select-none group">
+        <!-- YouTube Play Icon -->
+        <div class="relative flex items-center justify-center">
+          <svg class="w-8 h-6" viewBox="0 0 28 20">
+            <path fill="#FF0000" d="M27.4 3.1c-.3-1.2-1.2-2.1-2.4-2.4C22.8 0 14 0 14 0S5.2 0 3 .7C1.8 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.2 2.1 2.4 2.4 2.2.7 11 .7 11 .7s8.8 0 11-.7c1.2-.3 2.1-1.2 2.4-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9z"/>
+            <path fill="#FFFFFF" d="M11.2 14.3L18.5 10l-7.3-4.3v8.6z"/>
+          </svg>
         </div>
-
-        <!-- Center: Search Bar & Mic -->
-        <div class="hidden md:flex items-center flex-1 max-w-2xl mx-6">
-            <div class="flex items-center w-full bg-[#121212] border border-[#303030] focus-within:border-blue-500 rounded-l-full px-4 py-1.5">
-                <input id="searchInput" type="text" placeholder="Cari kenangan LDR Danial & Deandra..." class="w-full bg-transparent text-sm focus:outline-none text-gray-200 placeholder-gray-500">
-            </div>
-            <button id="searchBtn" class="bg-[#222222] hover:bg-[#303030] border border-l-0 border-[#303030] rounded-r-full px-6 py-2 transition-colors" title="Telusuri">
-                <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-            </button>
-            <button id="micBtn" class="ml-3 p-2.5 bg-[#222222] hover:bg-[#303030] rounded-full text-gray-300 transition-colors shrink-0" title="Telusuri dengan suara cinta">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Right: Actions + Profile Avatar -->
-        <div class="flex items-center gap-1 sm:gap-3">
-            <button id="createBtn" class="flex items-center gap-2 bg-ytHover hover:bg-ytBorder px-3 py-1.5 rounded-full text-xs font-medium text-gray-200 transition-colors">
-                <span class="text-base text-white font-light">+</span>
-                <span class="hidden sm:inline">Buat</span>
-            </button>
-
-            <!-- Bell Notification -->
-            <button id="notifBtn" class="p-2 hover:bg-ytHover rounded-full relative text-gray-200" title="Notifikasi Cinta">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                </svg>
-                <span class="absolute top-1 right-1 bg-ytRed text-white text-[10px] font-bold px-1 rounded-full min-w-[18px] text-center">99+</span>
-            </button>
-
-            <!-- User Channel Profile Avatar -->
-            <div class="flex items-center pl-1 cursor-pointer" title="Danial & Deandra Channel">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-red-600 via-rose-500 to-pink-500 text-white font-bold text-xs flex items-center justify-center ring-2 ring-red-500/80 shadow">
-                    D&D
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN WRAPPER -->
-    <div class="flex pt-14 min-h-[calc(100vh-3.5rem)]">
-        <!-- 2. SIDEBAR NAVIGATION -->
-        <aside id="sidebar" class="w-60 bg-[#0f0f0f] shrink-0 hidden md:block border-r border-ytBorder/20 p-3 space-y-6 select-none transition-all duration-300">
-            <!-- Main YouTube Links -->
-            <div class="space-y-0.5">
-                <a href="#" class="flex items-center gap-6 px-3 py-2.5 bg-ytHover text-white rounded-xl font-medium text-sm">
-                    <svg class="w-5 h-5 text-ytRed" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l1.293 1.293a1 1 0 001.414-1.414l-7-7z"/>
-                    </svg>
-                    <span>Beranda</span>
-                </a>
-                <a href="#" class="flex items-center gap-6 px-3 py-2.5 text-gray-300 hover:bg-ytHover hover:text-white rounded-xl text-sm transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                    <span>Shorts LDR</span>
-                </a>
-                <a href="#" class="flex items-center gap-6 px-3 py-2.5 text-gray-300 hover:bg-ytHover hover:text-white rounded-xl text-sm transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                    </svg>
-                    <span>Subs Cinta (1)</span>
-                </a>
-            </div>
-
-            <hr class="border-ytBorder/30">
-
-            <!-- LDR Tracker Card Widget -->
-            <div class="bg-gradient-to-b from-red-950/40 via-ytCardBg to-ytDarkBg border border-red-900/40 p-4 rounded-2xl shadow-lg relative overflow-hidden">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-[11px] font-bold text-red-400 tracking-wider uppercase">LDR Tracker Live</span>
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                </div>
-                <h4 class="text-xs font-bold text-white mb-1">Danial & Deandra</h4>
-                
-                <!-- Live Days Counter -->
-                <div class="my-2 bg-black/40 p-2.5 rounded-xl border border-red-950 text-center">
-                    <div id="ldrDaysCount" class="text-xl font-extrabold text-red-500 font-ytBrand">0 Hari</div>
-                    <div class="text-[10px] text-ytGrayText mt-0.5">Sejak 3 Maret 2026</div>
-                </div>
-
-                <div class="space-y-1 text-[11px] text-gray-300">
-                    <div class="flex justify-between">
-                        <span class="text-ytGrayText">Lokasi Danial:</span>
-                        <span class="font-semibold text-white">Jember, ID 📍</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-ytGrayText">Lokasi Deandra:</span>
-                        <span class="font-semibold text-pink-400">Di Hati Danial 💕</span>
-                    </div>
-                    <div class="flex justify-between pt-1 border-t border-ytBorder/30">
-                        <span class="text-ytGrayText">Jarak Hati:</span>
-                        <span class="font-bold text-emerald-400">0 KM ✨</span>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="border-ytBorder/30">
-
-            <!-- Subscribed Playlists -->
-            <div class="space-y-1">
-                <h3 class="px-3 text-xs font-semibold text-ytGrayText uppercase tracking-wider mb-2">Koleksi Video LDR</h3>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-ytHover rounded-xl text-sm transition-colors">
-                    <span class="text-base">✈️</span>
-                    <span>Flight Log Jember</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-ytHover rounded-xl text-sm transition-colors">
-                    <span class="text-base">📞</span>
-                    <span>Virtual Date 8 Jam</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-ytHover rounded-xl text-sm transition-colors">
-                    <span class="text-base">🗓️</span>
-                    <span>Countdown Ketemu</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-ytHover rounded-xl text-sm transition-colors">
-                    <span class="text-base">💌</span>
-                    <span>Surat Rahasia</span>
-                </a>
-            </div>
-        </aside>
-
-        <!-- 3. MAIN CONTENT AREA -->
-        <main class="flex-1 p-4 md:p-6 overflow-y-auto">
-            <!-- Horizontal Category Chips Bar -->
-            <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-4 no-scrollbar">
-                <button class="bg-white text-black px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shadow">Semua</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">LDR Memories ✈️</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">Virtual Date 📞</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">Call 24/7 😴</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">Jarak Jember & Kamu 📍</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">Counting Days 🗓️</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">Surat Cinta 💌</button>
-                <button class="bg-ytCardBg hover:bg-ytHover text-gray-200 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border border-ytBorder/40">Playlist Kita 🎵</button>
-            </div>
-
-            <!-- YouTube Romantic Banner Notice -->
-            <div class="mb-6 p-4 rounded-2xl bg-gradient-to-r from-red-950 via-ytCardBg to-rose-950 border border-red-600/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
-                <div class="flex items-center gap-3 text-center sm:text-left">
-                    <div class="w-10 h-10 rounded-full bg-red-600/30 border border-red-500/50 flex items-center justify-center shrink-0">
-                        <span class="text-xl">✈️</span>
-                    </div>
-                    <div>
-                        <h2 class="text-sm font-bold text-white">Beranda YouTube Khusus LDR Danial & Deandra ❤️</h2>
-                        <p class="text-xs text-ytGrayText mt-0.5">Semua 4 video di bawah sedang terputar otomatis secara live. Klik video mana saja untuk membuka Watch Page & surat cintanya!</p>
-                    </div>
-                </div>
-                <button id="quickOpenBtn" class="bg-ytRed hover:bg-red-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-red-900/50 shrink-0">
-                    Buka Video Pertama 💌
-                </button>
-            </div>
-
-            <!-- 4 MAIN VIDEO GRID CONTAINER -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6" id="videoGrid">
-                <!-- 4 LDR Videos rendered via JavaScript -->
-            </div>
-        </main>
+        <!-- YouTube Condensed Wordmark -->
+        <span class="font-yt font-bold text-[21px] tracking-tighter text-white leading-none">YouTube</span>
+        <span class="text-[10px] text-yt-muted self-start -mt-0.5 ml-0.5 font-medium">LDR</span>
+      </a>
     </div>
 
-    <!-- 4. YOUTUBE WATCH PAGE MODAL (POPUP PLAYER & LETTER) -->
-    <div id="videoModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto">
-        <div class="bg-[#0f0f0f] border border-ytBorder/60 w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl relative my-auto max-h-[95vh] flex flex-col">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between px-4 py-3 border-b border-ytBorder/40 bg-[#161616]">
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                    <span class="text-xs font-medium text-ytGrayText ml-2">YouTube Watch Mode • Danial & Deandra</span>
-                </div>
-                <button id="closeModal" class="p-1.5 text-ytGrayText hover:text-white hover:bg-ytHover rounded-full transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Modal Body Scrollable -->
-            <div class="overflow-y-auto p-4 sm:p-6 space-y-4 flex-1">
-                <!-- Simulated YouTube Player Container -->
-                <div class="relative aspect-video w-full bg-black rounded-xl overflow-hidden shadow-inner border border-ytBorder/40 group">
-                    <canvas id="modalCanvas" class="w-full h-full object-cover"></canvas>
-                    
-                    <!-- Player Controls Bar -->
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3 flex flex-col gap-2">
-                        <!-- Progress Timeline -->
-                        <div class="w-full bg-white/20 h-1.5 rounded-full cursor-pointer relative overflow-hidden group/bar">
-                            <div id="playerProgressBar" class="bg-ytRed h-full w-1/3 relative transition-all">
-                                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-ytRed rounded-full shadow scale-0 group-hover/bar:scale-100 transition-transform"></div>
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <div class="flex items-center justify-between text-white text-xs">
-                            <div class="flex items-center gap-4">
-                                <button id="modalPlayBtn" class="hover:text-ytRed transition-colors">
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                </button>
-                                <button id="modalAudioBtn" class="hover:text-ytRed transition-colors flex items-center gap-1">
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
-                                    <span class="text-[10px] text-red-400 font-semibold" id="audioStatusText">Lofi Audio OFF</span>
-                                </button>
-                                <span class="text-ytGrayText text-[11px]" id="modalTimeCounter">02:14 / 10:04</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-ytGrayText">
-                                <span class="text-[10px] bg-ytBorder/60 px-1.5 py-0.5 rounded text-white font-mono">1080p60 HD</span>
-                                <svg class="w-4 h-4 hover:text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-2V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video Title -->
-                <h1 id="modalTitle" class="text-lg sm:text-xl font-bold text-white leading-snug">
-                    Judul Video Romantic
-                </h1>
-
-                <!-- Channel Info & Actions -->
-                <div class="flex flex-wrap items-center justify-between gap-4 py-2 border-b border-ytBorder/40">
-                    <!-- Channel details -->
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center font-bold text-sm text-white shadow ring-2 ring-red-500">
-                            D&D
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-1">
-                                <span class="font-semibold text-sm text-white">Danial & Deandra ♡</span>
-                                <svg class="w-4 h-4 text-blue-400 fill-current" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                            </div>
-                            <span class="text-xs text-ytGrayText">1,240,000 Pelanggan Setia</span>
-                        </div>
-                        <button id="subscribeBtn" class="ml-2 bg-white hover:bg-gray-200 text-black px-4 py-1.5 rounded-full text-xs font-bold transition-colors">
-                            Subscribed ❤️
-                        </button>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="flex items-center gap-2 flex-wrap">
-                        <button id="likeBtn" class="flex items-center gap-2 bg-ytHover hover:bg-ytBorder text-gray-200 px-4 py-1.5 rounded-full text-xs font-semibold transition-all">
-                            <svg id="likeHeartIcon" class="w-4 h-4 text-red-500 fill-current transition-transform" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                            <span id="likeCount">342,891</span>
-                        </button>
-
-                        <button id="shareBtn" class="flex items-center gap-1.5 bg-ytHover hover:bg-ytBorder text-gray-200 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 10-5.367-2.684 3 3 0 005.367 2.684zm0 9.316a3 3 0 10-5.368 2.684 3 3 0 005.368-2.684z"/></svg>
-                            <span>Bagikan</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- DESCRIPTION BOX -->
-                <div class="bg-ytCardBg/90 border border-ytBorder/50 rounded-2xl p-4 sm:p-5 text-sm space-y-3">
-                    <div class="flex items-center justify-between text-xs text-ytGrayText border-b border-ytBorder/30 pb-2">
-                        <span id="modalMetaStats">3.3M views • Jember & Di Hati Kamu</span>
-                        <span class="text-pink-400 font-semibold">Surat Spesial Dari Danial</span>
-                    </div>
-
-                    <p id="modalLetterText" class="text-gray-200 leading-relaxed font-sans text-sm sm:text-base whitespace-pre-line">
-                        Isi surat cinta LDR dimuat di sini...
-                    </p>
-
-                    <div class="pt-2 flex items-center justify-between text-xs text-ytGrayText">
-                        <span>Tag: <strong class="text-white">#DanialDeandraLDR #JemberLove #0KMHeart</strong></span>
-                    </div>
-                </div>
-
-                <!-- INTERACTIVE COMMENTS SECTION -->
-                <div class="pt-4">
-                    <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
-                        <span>Komentar</span>
-                        <span id="commentCountLabel" class="text-xs font-normal text-ytGrayText">(3)</span>
-                    </h3>
-
-                    <!-- Add Comment Input Box -->
-                    <div class="flex items-start gap-3 mb-6">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-rose-500 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow">
-                            D
-                        </div>
-                        <div class="flex-1 space-y-2">
-                            <input id="newCommentInput" type="text" placeholder="Tulis komentar manis buat Danial & Deandra..." class="w-full bg-transparent border-b border-ytBorder focus:border-white text-xs text-white pb-1 focus:outline-none transition-colors">
-                            <div class="flex justify-end gap-2">
-                                <button id="postCommentBtn" class="bg-ytRed hover:bg-red-700 text-white font-semibold text-xs px-3 py-1.5 rounded-full transition-colors">
-                                    Kirim Komentar 💌
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Comments Feed -->
-                    <div id="commentsList" class="space-y-3">
-                        <!-- Dynamic Comments Rendered Here -->
-                    </div>
-                </div>
-            </div>
+    <!-- Center: YouTube Search Bar -->
+    <div class="hidden sm:flex items-center flex-1 max-w-[600px] mx-4">
+      <div class="flex flex-1 items-center">
+        <div class="flex flex-1 items-center bg-[#121212] border border-yt-border focus-within:border-[#1c62b9] rounded-l-full px-4 h-10">
+          <svg class="w-4 h-4 text-yt-muted mr-3 hidden focus-within:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input 
+            id="search-input"
+            type="text" 
+            placeholder="Telusuri kenangan Danial & Deandra..." 
+            class="w-full bg-transparent text-[15px] text-yt-text placeholder-yt-muted focus:outline-none"
+          />
+          <button id="clear-search" onclick="clearSearch()" class="hidden text-yt-muted hover:text-white ml-2">
+            ✕
+          </button>
         </div>
-    </div>
-
-    <!-- 5. FLOATING AUDIO / LOFI PLAYER TOGGLE -->
-    <div class="fixed bottom-6 right-6 z-40">
-        <button id="musicToggleBtn" class="flex items-center gap-3 bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium text-xs sm:text-sm px-4 py-3 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 border border-red-400/40">
-            <span id="musicIcon" class="text-lg">🎵</span>
-            <span id="musicText">Putar Lofi LDR Melodies</span>
+        <button onclick="filterVideos()" class="h-10 px-5 bg-[#222222] hover:bg-[#2c2c2c] border border-l-0 border-yt-border rounded-r-full flex items-center justify-center transition" title="Telusuri">
+          <svg class="w-5 h-5 fill-current text-yt-text" viewBox="0 0 24 24">
+            <path d="M20.87 20.17l-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
+          </svg>
         </button>
+      </div>
+      <!-- Voice Icon -->
+      <button onclick="showToast('🎤 Voice note: I miss you so much, Deandra! ❤️')" class="ml-3 w-10 h-10 rounded-full bg-[#181818] hover:bg-yt-chip flex items-center justify-center shrink-0 transition" title="Telusuri dengan suara">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path d="M12 3c-1.66 0-3 1.37-3 3.07v5.86c0 1.7 1.34 3.07 3 3.07s3-1.37 3-3.07V6.07C15 4.37 13.66 3 12 3zm6.5 9h-1c0 3.03-2.47 5.5-5.5 5.5S6.5 15.03 6.5 12h-1c0 3.24 2.39 5.93 5.5 6.41V21h2v-2.59c3.11-.48 5.5-3.17 5.5-6.41z"></path>
+        </svg>
+      </button>
     </div>
 
-    <!-- JAVASCRIPT APP LOGIC -->
-    <script>
-        // -------------------------------------------------------------
-        // LDR DAYS COUNTER LOGIC (START DATE: MARCH 3, 2026)
-        // -------------------------------------------------------------
-        const ldrStartDate = new Date('2026-03-03T00:00:00');
+    <!-- Right: Music Pill, Notifications, Profile Avatar -->
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <!-- Music Toggle Pill (Shape of My Heart) -->
+      <button id="header-music-btn" onclick="toggleMusic()" class="flex items-center gap-2 bg-yt-chip hover:bg-yt-chipHover border border-white/10 px-3 py-1.5 rounded-full text-xs font-medium transition">
+        <div id="header-eq" class="flex items-end gap-[2px] h-3.5 w-3.5 justify-center">
+          <span class="bar-1 w-[2.5px] h-1.5 bg-yt-red rounded-full"></span>
+          <span class="bar-2 w-[2.5px] h-3 bg-yt-red rounded-full"></span>
+          <span class="bar-3 w-[2.5px] h-2 bg-yt-red rounded-full"></span>
+        </div>
+        <span class="hidden md:inline max-w-[130px] truncate">Shape of My Heart</span>
+        <span id="header-music-status" class="text-[11px] text-yt-muted">Play</span>
+      </button>
+
+      <!-- Notification Bell -->
+      <div class="relative">
+        <button onclick="toggleNotif()" class="p-2 rounded-full hover:bg-yt-chip transition relative" title="Notifikasi">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M10 20h4c0 1.1-.9 2-2 2s-2-.9-2-2zm10-2.65V19H4v-1.65l2-1.88v-5.15C6 7.4 7.56 5.1 10 4.34v-.38c0-1.42 1.49-2.5 2.99-1.76.65.32 1.01 1.03 1.01 1.76v.39c2.44.75 4 3.06 4 5.98v5.15l2 1.87zm-1 .42-2-1.88v-5.47c0-2.47-1.19-4.36-3.13-5.1-1.26-.53-2.64-.5-3.84.03C8.15 6.11 7 7.99 7 10.42v5.47l-2 1.88V18h14v-.23z"></path>
+          </svg>
+          <span class="absolute top-1.5 right-1.5 bg-yt-red text-white text-[10px] font-bold px-1 rounded-full leading-tight">3</span>
+        </button>
+
+        <!-- Dropdown Notifikasi Bucin -->
+        <div id="notif-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-[#282828] border border-yt-border rounded-xl shadow-2xl overflow-hidden z-50">
+          <div class="px-4 py-3 border-b border-yt-border flex justify-between items-center">
+            <span class="text-sm font-medium">Notifikasi dari Danial</span>
+            <span class="text-xs text-yt-muted">LDR Mode</span>
+          </div>
+          <div class="divide-y divide-yt-border/60 text-xs">
+            <div class="p-3 hover:bg-yt-chip flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-red-600 to-rose-500 flex items-center justify-center font-bold shrink-0">D</div>
+              <div>
+                <p class="text-yt-text leading-snug"><span class="font-medium">Danial</span> mengupload: <span class="text-white">"4 Video Spesial Buat Kamu"</span></p>
+                <span class="text-yt-muted text-[11px]">Baru saja • Jember</span>
+              </div>
+            </div>
+            <div class="p-3 hover:bg-yt-chip flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-red-600 to-rose-500 flex items-center justify-center font-bold shrink-0">♥</div>
+              <div>
+                <p class="text-yt-text leading-snug">Pengingat LDR: Jarak boleh jauh, tapi pulangnya tetap ke <span class="text-white font-medium">Deandra</span>.</p>
+                <span class="text-yt-muted text-[11px]">Sejak 3 Maret 2026</span>
+              </div>
+            </div>
+            <div class="p-3 hover:bg-yt-chip flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-red-600 to-rose-500 flex items-center justify-center font-bold shrink-0">♪</div>
+              <div>
+                <p class="text-yt-text leading-snug">Backstreet Boys - <span class="text-white">Shape of My Heart</span> diputar di latar belakang.</p>
+                <span class="text-yt-muted text-[11px]">Soundtrack Kita</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Avatar -->
+      <button onclick="showToast('💖 Akun Resmi: Danial & Deandra (Since 03.03.2026)')" class="w-8 h-8 rounded-full bg-gradient-to-br from-red-600 to-pink-600 flex items-center justify-center text-xs font-bold text-white shadow ring-1 ring-white/20 shrink-0" title="Danial & Deandra">
+        D&D
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= SIDEBAR LEFT (YOUTUBE NAVIGATION) ================= -->
+  <aside id="sidebar" class="fixed top-14 left-0 bottom-0 w-60 bg-yt-bg px-3 py-3 overflow-y-auto z-30 transition-transform duration-200 -translate-x-full lg:translate-x-0 border-r border-white/5 lg:border-none">
+    <!-- Primary Nav -->
+    <div class="space-y-1">
+      <button onclick="resetFilter(event)" class="w-full flex items-center gap-5 px-3 py-2.5 rounded-xl bg-yt-chip font-medium text-sm text-white">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M4 21V10.08l8-6.96 8 6.96V21h-6v-6h-4v6H4z"></path>
+        </svg>
+        <span>Beranda</span>
+      </button>
+
+      <button onclick="openVideoModal(0)" class="w-full flex items-center gap-5 px-3 py-2.5 rounded-xl hover:bg-yt-chip text-sm text-yt-text transition">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25zm-.23 5.86-8.5 4.5c-1.34.71-3.01.2-3.72-1.14-.71-1.34-.2-3.01 1.14-3.72l2.04-1.08v-1.21l-.69-.28-1.11-.46c-.99-.41-1.65-1.35-1.7-2.41-.05-1.06.52-2.06 1.46-2.56l8.5-4.5c1.34-.71 3.01-.2 3.72 1.14.71 1.34.2 3.01-1.14 3.72L15.5 9.26v1.21l1.8.74c.99.41 1.65 1.35 1.7 2.41.05 1.06-.52 2.06-1.46 2.56z"></path>
+        </svg>
+        <span>Shorts Kita</span>
+      </button>
+
+      <button onclick="openVideoModal(3)" class="w-full flex items-center gap-5 px-3 py-2.5 rounded-xl hover:bg-yt-chip text-sm text-yt-text transition">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z"></path>
+        </svg>
+        <span>Surat Cinta</span>
+      </button>
+    </div>
+
+    <hr class="border-yt-border my-3" />
+
+    <!-- LDR Live Tracker Card (Styled seamlessly for YouTube Dark) -->
+    <div class="bg-[#181818] border border-yt-border/80 rounded-xl p-3.5 mx-1">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-yt-red flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-yt-red animate-ping"></span>
+          LDR Tracker
+        </span>
+        <span class="text-[11px] text-yt-muted">03 Mar 2026</span>
+      </div>
+
+      <div class="mb-2.5">
+        <div id="ldr-days" class="text-2xl font-bold text-white leading-tight">--- Hari</div>
+        <div id="ldr-clock" class="text-[11px] text-yt-muted font-mono mt-0.5">-- jam -- mnt -- dtk</div>
+      </div>
+
+      <div class="space-y-1.5 text-xs border-t border-yt-border pt-2.5">
+        <div class="flex items-center justify-between">
+          <span class="text-yt-muted">📍 Danial:</span>
+          <span class="text-yt-text font-medium">Jember, ID</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-yt-muted">📍 Deandra:</span>
+          <span class="text-yt-text font-medium">Di Hati Danial</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-yt-muted">❤️ Jarak Hati:</span>
+          <span class="text-emerald-400 font-medium">0 km</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-yt-border my-3" />
+
+    <!-- Subscriptions Section -->
+    <div class="px-3 mb-2 text-xs font-medium text-yt-muted uppercase tracking-wider">Subscription</div>
+    <div class="space-y-1">
+      <button onclick="openVideoModal(0)" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-yt-chip text-sm text-yt-text transition">
+        <div class="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-[11px] font-bold shrink-0">D</div>
+        <span class="truncate flex-1 text-left">Danial & Deandra</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#3ea6ff]"></span>
+      </button>
+      <button onclick="toggleMusic()" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-yt-chip text-sm text-yt-text transition">
+        <div class="w-6 h-6 rounded-full bg-zinc-700 flex items-center justify-center text-[11px] font-bold shrink-0">♪</div>
+        <span class="truncate flex-1 text-left">Backstreet Boys</span>
+      </button>
+    </div>
+
+    <div class="mt-6 px-3 text-[11px] text-[#717171] leading-relaxed">
+      Dibuat khusus oleh <span class="text-yt-muted">Danial</span> untuk <span class="text-yt-muted">Deandra</span>.<br/>
+      © 2026 YouTube LDR Edition
+    </div>
+  </aside>
+
+  <!-- Overlay Backdrop for Mobile Sidebar -->
+  <div id="sidebar-backdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-20 hidden lg:hidden"></div>
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="pt-14 lg:pl-60 min-h-screen">
+    
+    <!-- Category Chips Bar -->
+    <div class="sticky top-14 bg-yt-bg/95 backdrop-blur-md z-20 px-4 sm:px-6 py-3 flex items-center gap-3 overflow-x-auto no-scrollbar">
+      <button onclick="setCategory('all', this)" class="chip-btn active px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-black shrink-0 transition">
+        Semua
+      </button>
+      <button onclick="setCategory('ldr', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
+        LDR Moments
+      </button>
+      <button onclick="setCategory('call', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
+        Sleep Call 😴
+      </button>
+      <button onclick="setCategory('countdown', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
+        Nunggu Ketemu ✈️
+      </button>
+      <button onclick="setCategory('letter', this)" class="chip-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition">
+        Buat Deandra 💌
+      </button>
+      <button onclick="toggleMusic()" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-yt-chip hover:bg-yt-chipHover text-yt-text shrink-0 transition flex items-center gap-1.5">
+        <span class="text-yt-red">♪</span> Shape of My Heart
+      </button>
+    </div>
+
+    <!-- Mobile Search Input (Visible only on small screens) -->
+    <div class="px-4 pb-3 sm:hidden">
+      <input 
+        type="text" 
+        oninput="document.getElementById('search-input').value = this.value; filterVideos();"
+        placeholder="Cari kenangan kita..." 
+        class="w-full bg-[#121212] border border-yt-border rounded-full px-4 py-2 text-sm text-yt-text placeholder-yt-muted focus:outline-none focus:border-[#1c62b9]"
+      />
+    </div>
+
+    <!-- 4 AUTOPLAY VIDEOS GRID -->
+    <section class="px-4 sm:px-6 pt-2 pb-24 max-w-[1400px] mx-auto">
+      <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
+        <!-- Cards rendered dynamically via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FLOATING MUSIC PLAYER (SHAPE OF MY HEART) ================= -->
+  <div id="floating-player" class="fixed bottom-4 right-4 z-30 bg-[#212121]/95 backdrop-blur-md border border-white/15 rounded-2xl p-3 shadow-2xl flex items-center gap-3 max-w-[310px] transition hover:border-white/30">
+    <!-- Vinyl / Cover -->
+    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-600 via-rose-700 to-zinc-900 flex items-center justify-center shrink-0 relative overflow-hidden shadow">
+      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </div>
+
+    <!-- Track Info -->
+    <div class="min-w-0 flex-1">
+      <div class="text-xs font-medium text-white truncate">Shape of My Heart</div>
+      <div class="text-[11px] text-yt-muted truncate">Backstreet Boys • Our Song</div>
+      <div id="music-hint" class="text-[10px] text-rose-400 truncate mt-0.5">Tap di mana saja untuk putar lagu</div>
+    </div>
+
+    <!-- Play/Pause Button -->
+    <button id="float-play-btn" onclick="toggleMusic()" class="w-9 h-9 rounded-full bg-white text-black hover:scale-105 active:scale-95 flex items-center justify-center shrink-0 transition" title="Play / Pause Lagu">
+      <svg id="icon-play" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg id="icon-pause" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ================= YOUTUBE WATCH PAGE MODAL ================= -->
+  <div id="watch-modal" class="fixed inset-0 bg-yt-bg z-50 hidden overflow-y-auto">
+    <!-- Modal Header -->
+    <div class="sticky top-0 h-14 bg-yt-bg/95 backdrop-blur-md px-4 flex items-center justify-between border-b border-yt-border/60 z-10">
+      <button onclick="closeVideoModal()" class="flex items-center gap-2 text-sm font-medium text-yt-text hover:text-white bg-yt-chip hover:bg-yt-chipHover px-3.5 py-1.5 rounded-full transition">
+        <span>←</span> Kembali ke Beranda
+      </button>
+      <div class="flex items-center gap-1 select-none">
+        <svg class="w-7 h-5" viewBox="0 0 28 20">
+          <path fill="#FF0000" d="M27.4 3.1c-.3-1.2-1.2-2.1-2.4-2.4C22.8 0 14 0 14 0S5.2 0 3 .7C1.8 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.2 2.1 2.4 2.4 2.2.7 11 .7 11 .7s8.8 0 11-.7c1.2-.3 2.1-1.2 2.4-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9z"/>
+          <path fill="#FFFFFF" d="M11.2 14.3L18.5 10l-7.3-4.3v8.6z"/>
+        </svg>
+        <span class="font-yt font-bold text-lg tracking-tighter text-white">YouTube</span>
+      </div>
+      <div class="w-24 hidden sm:block"></div>
+    </div>
+
+    <!-- Watch Content -->
+    <div class="max-w-5xl mx-auto px-4 py-6">
+      <!-- Video Player Container -->
+      <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10">
+        <video id="modal-video" class="w-full h-full object-contain" controls autoplay loop playsinline></video>
+      </div>
+
+      <!-- Video Title -->
+      <h1 id="modal-title" class="text-lg sm:text-xl font-bold text-white mt-4 leading-snug"></h1>
+
+      <!-- Channel Bar & Actions -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-3 pb-4 border-b border-yt-border">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-rose-600 flex items-center justify-center font-bold text-sm shrink-0">
+            D
+          </div>
+          <div>
+            <div class="flex items-center gap-1 font-medium text-sm text-white">
+              <span>Danial & Deandra</span>
+              <svg class="w-3.5 h-3.5 text-yt-muted fill-current" viewBox="0 0 24 24">
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM9.8 17.3l-4.2-4.1L7 11.8l2.8 2.7L17 7.4l1.4 1.4-8.6 8.5z"></path>
+              </svg>
+            </div>
+            <div class="text-xs text-yt-muted">1 subscriber spesial (Deandra)</div>
+          </div>
+          <button id="sub-btn" onclick="toggleSubscribe()" class="ml-3 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-neutral-200 transition">
+            Disubscribe ♥
+          </button>
+        </div>
+
+        <!-- Action Pills -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <button id="like-btn" onclick="handleLike(event)" class="relative flex items-center gap-2 px-4 py-2 rounded-full bg-yt-chip hover:bg-yt-chipHover text-sm font-medium transition">
+            <span>👍</span>
+            <span id="modal-likes">999 rb</span>
+          </button>
+          <button onclick="showToast('💌 Link kenangan kita sudah tersalin di hati!')" class="flex items-center gap-2 px-4 py-2 rounded-full bg-yt-chip hover:bg-yt-chipHover text-sm font-medium transition">
+            <span>↗</span>
+            <span>Bagikan</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Description Box (Love Letter) -->
+      <div class="mt-4 bg-yt-chip/80 hover:bg-yt-chip rounded-xl p-4 text-sm transition">
+        <div id="modal-meta" class="font-medium text-white mb-2"></div>
+        <p id="modal-desc" class="text-yt-text whitespace-pre-line leading-relaxed"></p>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="mt-6">
+        <h3 class="text-base font-bold text-white mb-4">Komentar Kita</h3>
         
-        function updateLdrDays() {
-            const now = new Date();
-            const diffTime = Math.abs(now - ldrStartDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            const el = document.getElementById('ldrDaysCount');
-            if (el) {
-                el.innerText = `${diffDays} Hari Bersama`;
-            }
+        <!-- Add Comment Form -->
+        <form onsubmit="addComment(event)" class="flex gap-3 mb-6">
+          <div class="w-9 h-9 rounded-full bg-pink-600 flex items-center justify-center text-xs font-bold shrink-0">
+            D
+          </div>
+          <div class="flex-1 flex gap-2">
+            <input 
+              id="comment-input"
+              type="text" 
+              placeholder="Tulis balasan buat Danial di sini..." 
+              class="flex-1 bg-transparent border-b border-yt-border focus:border-white py-1.5 text-sm text-white placeholder-yt-muted focus:outline-none"
+            />
+            <button type="submit" class="px-4 py-1.5 rounded-full bg-[#3ea6ff] text-black text-xs font-bold hover:bg-[#65b8ff] transition">
+              Kirim
+            </button>
+          </div>
+        </form>
+
+        <div id="comments-list" class="space-y-4">
+          <!-- Comments injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-[#282828] border border-white/15 text-white text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // Data 4 Video Beranda (Memanggil video1.mp4 - video4.mp4)
+    const videos = [
+      {
+        id: 0,
+        src: 'video1.mp4',
+        category: 'ldr',
+        duration: '03:03',
+        title: 'LDR Log: Jarak Jember ke Kamu Boleh Jauh, Tapi Pulangnya Tetap Kamu ✈️❤️',
+        channel: 'Danial & Deandra',
+        views: '3,3 jt x ditonton',
+        time: 'Sejak 3 Mar 2026',
+        likes: '303 rb',
+        gradient: 'from-rose-950 via-neutral-900 to-black',
+        description: `Hai Deandra,\n\nDari Jember ke tempat kamu sekarang mungkin butuh waktu dan jarak yang nggak pendek. Tapi setiap hari sejak 3 Maret 2026, kamu selalu jadi alasan paling sederhana buat aku semangat.\n\nPutar terus lagu Shape of My Heart di pojok kanan bawah ya, anggap aja aku lagi nemenin kamu di sebelah. I love you more than the distance between us. ❤️`
+      },
+      {
+        id: 1,
+        src: 'video2.mp4',
+        category: 'call',
+        duration: '08:12',
+        title: 'Sleep Call & Virtual Date: Nemenin Kamu Sampai Ketiduran 😴📞',
+        channel: 'Danial & Deandra',
+        views: '1,8 jt x ditonton',
+        time: 'Favorit Kita',
+        likes: '520 rb',
+        gradient: 'from-indigo-950 via-neutral-900 to-black',
+        description: `Salah satu momen paling aku suka di hubungan LDR kita: dengerin cerita kamu seharian lewat layar HP sampai salah satu dari kita ketiduran duluan.\n\nMakasih ya udah selalu sabar ngadepin kesibukan aku dan selalu nyempetin waktu buat kita.`
+      },
+      {
+        id: 2,
+        src: 'video3.mp4',
+        category: 'countdown',
+        duration: '04:20',
+        title: 'Menghitung Hari Sampai Kita Ketemu Lagi Tanpa Terhalang Layar 🗓️✨',
+        channel: 'Danial & Deandra',
+        views: '2,4 jt x ditonton',
+        time: 'Soon!',
+        likes: '777 rb',
+        gradient: 'from-amber-950 via-neutral-900 to-black',
+        description: `Setiap hari yang lewat artinya satu hari lebih dekat buat aku ketemu kamu langsung, bukan lagi lewat video call.\n\nJaga kesehatan baik-baik ya di sana, jangan telat makan, dan jangan lupa kalau di Jember ada aku yang selalu kangen kamu.`
+      },
+      {
+        id: 3,
+        src: 'video4.mp4',
+        category: 'letter',
+        duration: '05:14',
+        title: 'Surat Terbuka Untuk Deandra: Terima Kasih Sudah Bertahan Sejauh Ini 💌',
+        channel: 'Danial & Deandra',
+        views: '9,9 jt x ditonton',
+        time: 'Untuk Kamu',
+        likes: '1,2 jt',
+        gradient: 'from-red-950 via-neutral-900 to-black',
+        description: `Deandra,\n\nWebsite kecil tema YouTube ini aku bikin khusus buat kamu. Kalau lagi kangen, lagi capek, atau lagi butuh ditemenin, buka aja halaman ini.\n\n"Looking back on the things I've done, I was trying to be someone..." — dan sekarang aku cuma mau jadi orang yang selalu ada buat kamu. Love you always, Danial.`
+      }
+    ];
+
+    let activeCategory = 'all';
+    let comments = JSON.parse(localStorage.getItem('yt_ldr_comments')) || [
+      { author: 'Danial', text: 'Selamat datang di YouTube khusus kita berdua, Deandra! Jangan lupa nyalain lagunya ya ❤️', time: 'Baru saja' },
+      { author: 'Deandra', text: 'Lucu banget sih beranda YouTube-nya isinya kita semua 😭❤️', time: '1 menit lalu' }
+    ];
+
+    // Render 4 Autoplay Video Cards
+    function renderVideos() {
+      const grid = document.getElementById('video-grid');
+      const query = document.getElementById('search-input').value.toLowerCase().trim();
+      
+      const filtered = videos.filter(v => {
+        const matchCat = activeCategory === 'all' || v.category === activeCategory;
+        const matchQuery = v.title.toLowerCase().includes(query) || v.description.toLowerCase().includes(query);
+        return matchCat && matchQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-16 text-yt-muted">
+            <p class="text-base">Kenangan yang dicari nggak ketemu, coba kata kunci lain ya ❤️</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(v => `
+        <article onclick="openVideoModal(${v.id})" class="group cursor-pointer flex flex-col">
+          <!-- 16:9 Video Thumbnail Container -->
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br ${v.gradient} border border-white/5">
+            <video 
+              src="${v.src}" 
+              autoplay 
+              loop 
+              muted 
+              playsinline 
+              preload="auto"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+              class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+            ></video>
+
+            <!-- Fallback visual jika file .mp4 belum ditaruh di folder -->
+            <div class="hidden absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+              <span class="text-3xl mb-2">🎬</span>
+              <span class="text-xs font-medium text-white/80">Taruh file <code class="bg-white/10 px-1.5 py-0.5 rounded">${v.src}</code> di folder GitHub</span>
+            </div>
+
+            <!-- Live Autoplay Badge -->
+            <div class="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-sm text-[11px] font-medium px-2 py-0.5 rounded flex items-center gap-1.5 text-white">
+              <span class="w-1.5 h-1.5 rounded-full bg-yt-red animate-pulse"></span>
+              <span>AUTOPLAY</span>
+            </div>
+
+            <!-- Duration Badge ala YouTube -->
+            <div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">
+              ${v.duration}
+            </div>
+
+            <!-- Red Progress Bar Hover ala YouTube -->
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+              <div class="h-full bg-yt-red w-2/3 group-hover:w-full transition-all duration-700"></div>
+            </div>
+          </div>
+
+          <!-- Video Details Row -->
+          <div class="flex gap-3 mt-3 pr-2">
+            <!-- Channel Avatar -->
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-red-600 to-rose-600 flex items-center justify-center text-xs font-bold text-white shrink-0 mt-0.5">
+              D
+            </div>
+
+            <!-- Title & Meta -->
+            <div class="flex-1 min-w-0">
+              <h3 class="text-[15px] font-medium text-yt-text leading-snug line-clamp-2 group-hover:text-white">
+                ${v.title}
+              </h3>
+              <div class="mt-1 flex items-center gap-1 text-[13px] text-yt-muted hover:text-yt-text">
+                <span>${v.channel}</span>
+                <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM9.8 17.3l-4.2-4.1L7 11.8l2.8 2.7L17 7.4l1.4 1.4-8.6 8.5z"></path>
+                </svg>
+              </div>
+              <div class="text-[13px] text-yt-muted">
+                ${v.views} • ${v.time}
+              </div>
+            </div>
+
+            <!-- 3 Dots Menu -->
+            <button onclick="event.stopPropagation(); showToast('❤️ Disimpan ke Playlist Kenangan Kita')" class="p-1 text-yt-text opacity-0 group-hover:opacity-100 transition self-start" title="Opsi">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zm0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z"></path>
+              </svg>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // ================= AUDIO CONTROL (shapeofmyheart.mp3) =================
+    const bgMusic = document.getElementById('bg-music');
+    let isMusicPlaying = false;
+
+    function updateMusicUI(playing) {
+      isMusicPlaying = playing;
+      const playIcon = document.getElementById('icon-play');
+      const pauseIcon = document.getElementById('icon-pause');
+      const headerEq = document.getElementById('header-eq');
+      const headerStatus = document.getElementById('header-music-status');
+      const musicHint = document.getElementById('music-hint');
+
+      if (playing) {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        headerEq.classList.add('eq-playing');
+        headerStatus.textContent = 'Playing';
+        headerStatus.classList.replace('text-yt-muted', 'text-emerald-400');
+        musicHint.textContent = 'Sedang diputar • Backstreet Boys';
+        musicHint.classList.replace('text-rose-400', 'text-emerald-400');
+      } else {
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        headerEq.classList.remove('eq-playing');
+        headerStatus.textContent = 'Paused';
+        headerStatus.classList.replace('text-emerald-400', 'text-yt-muted');
+        musicHint.textContent = 'Klik Play untuk putar lagu';
+      }
+    }
+
+    function playMusic() {
+      bgMusic.volume = 0.65;
+      bgMusic.play().then(() => {
+        updateMusicUI(true);
+      }).catch(() => {
+        updateMusicUI(false);
+      });
+    }
+
+    function toggleMusic() {
+      if (bgMusic.paused) {
+        playMusic();
+        showToast('🎵 Memutar: Shape of My Heart - Backstreet Boys');
+      } else {
+        bgMusic.pause();
+        updateMusicUI(false);
+        showToast('⏸️ Lagu dijeda');
+      }
+    }
+
+    // Coba autoplay saat load & langsung nyalakan begitu layar disentuh/diklik pertama kali
+    window.addEventListener('DOMContentLoaded', () => {
+      playMusic();
+      const unlockAudio = () => {
+        if (bgMusic.paused) {
+          playMusic();
         }
+        document.removeEventListener('click', unlockAudio);
+        document.removeEventListener('touchstart', unlockAudio);
+      };
+      document.addEventListener('click', unlockAudio);
+      document.addEventListener('touchstart', unlockAudio);
+    });
 
-        // -------------------------------------------------------------
-        // DATA SET: 4 LDR SPECIAL VIDEOS
-        // -------------------------------------------------------------
-        const videosData = [
-            {
-                id: 1,
-                title: "LDR Log: Distance Between Jember & My Heart ✈️ physical distance, 0km heart distance",
-                views: "3.3M views",
-                time: "3 hari lalu",
-                duration: "03:03",
-                themeColor: "#ff4b72",
-                bgGradient: ['#1a050b', '#3d0c18', '#0f0f0f'],
-                type: 'flightMap',
-                letter: `Deandra Sayang... ✈️❤️\n\nTahu ga, waktu Danial ngelihat peta antara Jember dan kota kamu, memang ada ratusan kilometer yang memisahkan kita secara fisik.\n\nTapi tahu apa yang lebih ajaib? Jarak hati kita itu persis 0 KM! Setiap kali Danial dengar suara kamu atau nerima pesan singkat dari kamu, rasanya kamu lagi ada persis di sebelah aku.\n\nLDR ini bukan tentang sejauh apa kita terpisah, tapi tentang seberapa kuat rasa percaya dan sayang kita yang terus bertambah setiap harinya. Makasih ya udah sabar dan berjuang bareng Danial!`
-            },
-            {
-                id: 2,
-                title: "Virtual Date Night: Call 8 Jam Sampai Ketiduran 😴📞",
-                views: "1.5M views",
-                time: "1 minggu lalu",
-                duration: "08:00:00",
-                themeColor: "#9d4edd",
-                bgGradient: ['#0d021a', '#240046', '#0f0f0f'],
-                type: 'virtualCall',
-                letter: `Deandra lucuku... 😴💤\n\nVideo call 8 jam sampai kita berdua ketiduran dengan HP masih menyala itu selalu jadi momen terfavorit Danial.\n\nMeskipun cuma bisa natap layar, bisa nemenin kamu tidur dan denger napas halus kamu di seberang telepon bikin Danial ngerasa tenang banget. Kamu itu seperti lullaby terindah buat tidur aku.\n\nNanti kalau saatnya tiba dan kita ga perlu LDR lagi, aku bakal meluk kamu beneran sampai kita berdua tertidur lelap tanpa perlu koneksi internet lagi! 💖`
-            },
-            {
-                id: 3,
-                title: "Counting Days Until We Meet Again 🗓️✨ (Live Countdown)",
-                views: "9.9M watching",
-                time: "LIVE 🔴",
-                duration: "LIVE",
-                themeColor: "#ff0000",
-                bgGradient: ['#2b0000', '#5a0000', '#0f0f0f'],
-                type: 'countdown',
-                letter: `Untuk Deandra tercinta... 🗓️✨\n\nSetiap detik yang berlalu adalah satu langkah lebih dekat menuju hari di mana Danial bisa ketemu kamu langsung.\n\nAku selalu menghitung hari, membayangkan momen pertama waktu kita akhirnya tatap muka, meluk kamu erat-erat, dan jalan berdua tanpa harus mikirin batas waktu flight atau video call.\n\nTetap semangat ya sayangnya Danial. Countdown ini bakal terus berjalan dan pertemuan kita akan jadi hadiah terindah dari kesabaran kita!`
-            },
-            {
-                id: 4,
-                title: "Surat Cinta Terbuka Untuk Deandra (Jangan Di-skip!) 💌",
-                views: "∞ views",
-                time: "Spesial LDR",
-                duration: "10:00",
-                themeColor: "#f72585",
-                bgGradient: ['#1f0014', '#4a0033', '#0f0f0f'],
-                type: 'loveLetter',
-                letter: `Deandra, My Whole World... 💌🌹\n\nKalau ada yang tanya kenapa aku bisa seyakin dan sesayang ini sama kamu meskipun kita LDR, jawabannya sederhana: Karena kamu adalah Deandra.\n\nTidak ada tempat terindah selain di dekat kamu, dan tidak ada wanita lain yang bisa menggantikan posisi kamu di hati Danial. Terima kasih sudah mencintai aku dengan segala kelebihan dan kekuranganku.\n\nSurat ini terkunci di website YouTube 'YouLove' ini selamanya sebagai bukti janji setia Danial untuk Deandra. I love you endlessly!`
-            }
-        ];
+    // ================= LDR LIVE COUNTER (SEJAK 3 MARET 2026) =================
+    const ldrStartDate = new Date('2026-03-03T00:00:00+07:00');
+    function updateLDRCounter() {
+      const now = new Date();
+      const diff = Math.max(0, now - ldrStartDate);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-        // Dynamic Comments Storage
-        const initialComments = [
-            { author: "Danial (Pembuat Web)", text: "Kangen bangettt sama Deandra 🥺❤️", time: "2 jam lalu", color: "bg-red-600" },
-            { author: "Deandra ♡", text: "LDR ini ga bakal ngurangin rasa sayang aku ke kamu, Danial! 💕", time: "1 jam lalu", color: "bg-pink-600" },
-            { author: "Sistem YouLove", text: "Distance means so little when someone means so much ❤️", time: "Baru saja", color: "bg-rose-600" }
-        ];
+      document.getElementById('ldr-days').textContent = `${days} Hari`;
+      document.getElementById('ldr-clock').textContent = `${hours} jam ${minutes} mnt ${seconds} dtk`;
+    }
+    setInterval(updateLDRCounter, 1000);
+    updateLDRCounter();
 
-        // -------------------------------------------------------------
-        // ANIMATED CANVAS VIDEO GENERATOR (4 DISTINCT LDR THUMBNAILS)
-        // -------------------------------------------------------------
-        function initCanvasVideo(canvasId, config) {
-            const canvas = document.getElementById(canvasId);
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = 480;
-            canvas.height = 270;
+    // ================= WATCH MODAL & INTERACTIONS =================
+    function openVideoModal(id) {
+      const video = videos.find(v => v.id === id);
+      if (!video) return;
 
-            let frame = 0;
-            const stars = Array.from({ length: 25 }, () => ({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 1,
-                alpha: Math.random()
-            }));
+      const modal = document.getElementById('watch-modal');
+      const modalVideo = document.getElementById('modal-video');
+      
+      modalVideo.src = video.src;
+      modalVideo.muted = false;
+      document.getElementById('modal-title').textContent = video.title;
+      document.getElementById('modal-likes').textContent = video.likes;
+      document.getElementById('modal-meta').textContent = `${video.views} • ${video.time} • #DanialDeandra #LDR`;
+      document.getElementById('modal-desc').textContent = video.description;
 
-            function render() {
-                frame++;
+      // Kecilkan volume lagu latar saat nonton video di modal supaya suara video terdengar jelas
+      if (!bgMusic.paused) {
+        bgMusic.volume = 0.15;
+      }
 
-                // Background gradient
-                const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-                grad.addColorStop(0, config.bgGradient[0]);
-                grad.addColorStop(0.5, config.bgGradient[1]);
-                grad.addColorStop(1, config.bgGradient[2]);
-                ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+      renderComments();
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
 
-                // Draw starry background
-                stars.forEach(s => {
-                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.sin(frame * 0.05 + s.alpha) * 0.5 + 0.5})`;
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                    ctx.fill();
-                });
+    function closeVideoModal() {
+      const modal = document.getElementById('watch-modal');
+      const modalVideo = document.getElementById('modal-video');
+      modalVideo.pause();
+      modalVideo.src = '';
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
 
-                // SPECIFIC ANIMATIONS BASED ON VIDEO TYPE
-                if (config.type === 'flightMap') {
-                    // Flight map between Jember & Deandra
-                    const startX = 80, startY = 180;
-                    const endX = 400, endY = 90;
-                    
-                    // Route curve line
-                    ctx.strokeStyle = 'rgba(255, 75, 114, 0.4)';
-                    ctx.setLineDash([6, 6]);
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(startX, startY);
-                    ctx.quadraticCurveTo(240, 40, endX, endY);
-                    ctx.stroke();
-                    ctx.setLineDash([]);
+      // Kembalikan volume lagu Shape of My Heart
+      if (!bgMusic.paused) {
+        bgMusic.volume = 0.65;
+      }
+    }
 
-                    // Pulsing Node Jember
-                    ctx.fillStyle = '#ff4b72';
-                    ctx.beginPath();
-                    ctx.arc(startX, startY, 6 + Math.sin(frame * 0.1) * 2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 11px Roboto';
-                    ctx.fillText('Jember (Danial)', startX - 30, startY + 20);
+    function renderComments() {
+      const list = document.getElementById('comments-list');
+      list.innerHTML = comments.map(c => `
+        <div class="flex gap-3">
+          <div class="w-9 h-9 rounded-full ${c.author === 'Danial' ? 'bg-red-600' : 'bg-pink-600'} flex items-center justify-center text-xs font-bold shrink-0">
+            ${c.author[0]}
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-medium text-white">@${c.author.toLowerCase()}</span>
+              <span class="text-[11px] text-yt-muted">${c.time}</span>
+            </div>
+            <p class="text-sm text-yt-text mt-0.5">${c.text}</p>
+          </div>
+        </div>
+      `).join('');
+    }
 
-                    // Pulsing Node Deandra
-                    ctx.fillStyle = '#ff85a1';
-                    ctx.beginPath();
-                    ctx.arc(endX, endY, 6 + Math.cos(frame * 0.1) * 2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.fillText('Deandra (Hati Danial)', endX - 50, endY - 15);
+    function addComment(e) {
+      e.preventDefault();
+      const input = document.getElementById('comment-input');
+      const text = input.value.trim();
+      if (!text) return;
 
-                    // Moving Flight Dot
-                    const progress = (frame % 200) / 200;
-                    const fx = (1 - progress) * (1 - progress) * startX + 2 * (1 - progress) * progress * 240 + progress * progress * endX;
-                    const fy = (1 - progress) * (1 - progress) * startY + 2 * (1 - progress) * progress * 40 + progress * progress * endY;
-                    
-                    ctx.fillStyle = '#ffffff';
-                    ctx.beginPath();
-                    ctx.arc(fx, fy, 5, 0, Math.PI * 2);
-                    ctx.fill();
+      comments.unshift({ author: 'Deandra', text, time: 'Baru saja' });
+      localStorage.setItem('yt_ldr_comments', JSON.stringify(comments));
+      input.value = '';
+      renderComments();
+      showToast('💬 Komentar terkirim!');
+    }
 
-                    // Heart icon over plane
-                    ctx.fillStyle = '#ff0000';
-                    ctx.font = '14px sans-serif';
-                    ctx.fillText('✈️❤️', fx - 8, fy - 8);
+    function handleLike(e) {
+      const btn = e.currentTarget;
+      const heart = document.createElement('span');
+      heart.textContent = '❤️';
+      heart.className = 'heart-burst absolute -top-2 left-1/2 pointer-events-none text-lg';
+      btn.appendChild(heart);
+      setTimeout(() => heart.remove(), 800);
+      showToast('❤️ Kamu menyukai video ini!');
+    }
 
-                } else if (config.type === 'virtualCall') {
-                    // Call waveform + 8h timer simulation
-                    ctx.fillStyle = 'rgba(0,0,0,0.5)';
-                    ctx.fillRect(40, 40, 180, 190);
-                    ctx.fillRect(260, 40, 180, 190);
+    function toggleSubscribe() {
+      const btn = document.getElementById('sub-btn');
+      if (btn.textContent.includes('Disubscribe')) {
+        btn.textContent = 'Subscribe';
+        btn.classList.replace('bg-white', 'bg-yt-chip');
+        btn.classList.replace('text-black', 'text-white');
+      } else {
+        btn.textContent = 'Disubscribe ♥';
+        btn.classList.replace('bg-yt-chip', 'bg-white');
+        btn.classList.replace('text-white', 'text-black');
+        showToast('🔔 Langganan seumur hidup aktif!');
+      }
+    }
 
-                    ctx.strokeStyle = '#9d4edd';
-                    ctx.lineWidth = 2;
-                    ctx.strokeRect(40, 40, 180, 190);
-                    ctx.strokeRect(260, 40, 180, 190);
+    // ================= FILTER, SEARCH & SIDEBAR =================
+    function setCategory(cat, btnEl) {
+      activeCategory = cat;
+      document.querySelectorAll('.chip-btn').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-black');
+        btn.classList.add('bg-yt-chip', 'text-yt-text');
+      });
+      btnEl.classList.remove('bg-yt-chip', 'text-yt-text');
+      btnEl.classList.add('bg-white', 'text-black');
+      renderVideos();
+    }
 
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 12px Roboto';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('Danial 👦', 130, 130);
-                    ctx.fillText('Deandra 👧😴', 350, 130);
+    function filterVideos() {
+      const input = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-search');
+      clearBtn.classList.toggle('hidden', input.value.length === 0);
+      renderVideos();
+    }
 
-                    // Sine wave audio
-                    ctx.strokeStyle = '#c77dff';
-                    ctx.beginPath();
-                    for (let x = 40; x < 440; x += 5) {
-                        const y = 210 + Math.sin(x * 0.05 + frame * 0.1) * 8;
-                        if (x === 40) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.stroke();
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      document.getElementById('clear-search').classList.add('hidden');
+      renderVideos();
+    }
 
-                } else if (config.type === 'countdown') {
-                    // Countdown clock display
-                    ctx.strokeStyle = '#ff0000';
-                    ctx.lineWidth = 4;
-                    ctx.beginPath();
-                    ctx.arc(240, 135, 65, 0, Math.PI * 2);
-                    ctx.stroke();
+    function resetFilter(e) {
+      if (e) e.preventDefault();
+      activeCategory = 'all';
+      clearSearch();
+      const firstChip = document.querySelector('.chip-btn');
+      if (firstChip) setCategory('all', firstChip);
+    }
 
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 22px Oswald';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('HARI KETEMU', 240, 125);
-                    ctx.fillStyle = '#ff4d4d';
-                    ctx.font = 'bold 14px Roboto';
-                    ctx.fillText('COUNTDOWN LIVE 🗓️', 240, 150);
+    document.getElementById('search-input').addEventListener('input', filterVideos);
 
-                } else if (config.type === 'loveLetter') {
-                    // Animated envelope & hearts
-                    ctx.fillStyle = '#f72585';
-                    ctx.beginPath();
-                    ctx.moveTo(180, 160);
-                    ctx.lineTo(240, 100);
-                    ctx.lineTo(300, 160);
-                    ctx.fill();
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      sidebar.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden');
+    }
+    document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
 
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '24px sans-serif';
-                    ctx.textAlign = 'center';
-                    const floatY = 80 + Math.sin(frame * 0.08) * 10;
-                    ctx.fillText('💌', 240, floatY);
-                    
-                    ctx.font = 'bold 13px Roboto';
-                    ctx.fillText('For Deandra With Love', 240, 200);
-                }
+    function toggleNotif() {
+      document.getElementById('notif-dropdown').classList.toggle('hidden');
+    }
 
-                // Play Progress Bar at Bottom
-                const progress = (frame % 300) / 300;
-                ctx.fillStyle = 'rgba(255,255,255,0.2)';
-                ctx.fillRect(0, canvas.height - 4, canvas.width, 4);
-                ctx.fillStyle = '#ff0000';
-                ctx.fillRect(0, canvas.height - 4, canvas.width * progress, 4);
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0');
+      }, 2800);
+    }
 
-                requestAnimationFrame(render);
-            }
-
-            render();
-        }
-
-        // -------------------------------------------------------------
-        // RENDER 4 VIDEO CARDS INTO GRID
-        // -------------------------------------------------------------
-        function renderVideoGrid() {
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = '';
-
-            videosData.forEach(video => {
-                const card = document.createElement('div');
-                card.className = "group cursor-pointer bg-ytCardBg/50 hover:bg-ytHover/70 rounded-2xl overflow-hidden transition-all duration-300 border border-ytBorder/30 hover:border-ytBorder flex flex-col hover:shadow-2xl hover:scale-[1.01]";
-                
-                card.innerHTML = `
-                    <!-- Thumbnail with Canvas stream -->
-                    <div class="relative aspect-video w-full bg-black overflow-hidden">
-                        <canvas id="videoCanvas_${video.id}" class="video-canvas"></canvas>
-                        
-                        <!-- Duration Badge -->
-                        <div class="absolute bottom-2.5 right-2.5 bg-black/85 backdrop-blur text-white text-[11px] font-semibold px-2 py-0.5 rounded">
-                            ${video.duration}
-                        </div>
-
-                        <!-- LDR Autoplay Tag -->
-                        <div class="absolute top-2.5 left-2.5 bg-red-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow">
-                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
-                            <span>AUTOPLAYING</span>
-                        </div>
-
-                        <!-- Hover Play Overlay -->
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-ytRed/90 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition-transform opacity-90 group-hover:opacity-100">
-                                <svg class="w-6 h-6 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Metadata -->
-                    <div class="p-3.5 flex gap-3 flex-1">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow ring-2 ring-red-500">
-                            D&D
-                        </div>
-
-                        <div class="flex-1 min-w-0">
-                            <h3 class="text-sm font-semibold text-white line-clamp-2 leading-snug group-hover:text-red-400 transition-colors">
-                                ${video.title}
-                            </h3>
-                            
-                            <p class="text-xs text-ytGrayText mt-1 flex items-center gap-1">
-                                <span>Danial & Deandra ♡</span>
-                                <svg class="w-3.5 h-3.5 text-blue-400 fill-current" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                            </p>
-
-                            <p class="text-xs text-ytGrayText mt-0.5">
-                                ${video.views} • ${video.time}
-                            </p>
-                        </div>
-                    </div>
-                `;
-
-                card.addEventListener('click', () => openLoveModal(video));
-                grid.appendChild(card);
-            });
-
-            setTimeout(() => {
-                videosData.forEach(video => {
-                    initCanvasVideo(`videoCanvas_${video.id}`, video);
-                });
-            }, 50);
-        }
-
-        // -------------------------------------------------------------
-        // WATCH MODAL LOGIC & COMMENTS HANDLING
-        // -------------------------------------------------------------
-        const modal = document.getElementById('videoModal');
-        const closeModalBtn = document.getElementById('closeModal');
-
-        function openLoveModal(video) {
-            document.getElementById('modalTitle').innerText = video.title;
-            document.getElementById('modalMetaStats').innerText = `${video.views} • ${video.time}`;
-            document.getElementById('modalLetterText').innerText = video.letter;
-
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-
-            initCanvasVideo('modalCanvas', video);
-            renderComments();
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // -------------------------------------------------------------
-        // COMMENTS SYSTEM LOGIC
-        // -------------------------------------------------------------
-        function renderComments() {
-            const list = document.getElementById('commentsList');
-            const countLabel = document.getElementById('commentCountLabel');
-            list.innerHTML = '';
-            countLabel.innerText = `(${initialComments.length})`;
-
-            initialComments.forEach(c => {
-                const item = document.createElement('div');
-                item.className = "flex items-start gap-3 bg-ytHover/30 p-3 rounded-xl border border-ytBorder/20";
-                item.innerHTML = `
-                    <div class="w-8 h-8 rounded-full ${c.color} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow">
-                        ${c.author.charAt(0)}
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold text-white">${c.author}</span>
-                            <span class="text-[10px] text-ytGrayText">${c.time}</span>
-                        </div>
-                        <p class="text-xs text-gray-200 mt-1">${c.text}</p>
-                    </div>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        document.getElementById('postCommentBtn').addEventListener('click', () => {
-            const input = document.getElementById('newCommentInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            initialComments.unshift({
-                author: "Deandra (Sayang)",
-                text: text,
-                time: "Baru saja",
-                color: "bg-pink-500"
-            });
-            input.value = '';
-            renderComments();
-        });
-
-        // -------------------------------------------------------------
-        // LIKE BUTTON INTERACTIVE BURST
-        // -------------------------------------------------------------
-        let likeCount = 342891;
-        let isLiked = false;
-        const likeBtn = document.getElementById('likeBtn');
-        const likeCountEl = document.getElementById('likeCount');
-        const likeIcon = document.getElementById('likeHeartIcon');
-
-        likeBtn.addEventListener('click', () => {
-            isLiked = !isLiked;
-            likeCount += isLiked ? 1 : -1;
-            likeCountEl.innerText = likeCount.toLocaleString();
-            likeIcon.classList.add('heart-burst');
-            setTimeout(() => likeIcon.classList.remove('heart-burst'), 400);
-
-            if (isLiked) {
-                likeBtn.classList.add('bg-red-950/80', 'text-red-400');
-            } else {
-                likeBtn.classList.remove('bg-red-950/80', 'text-red-400');
-            }
-        });
-
-        // Share button copy function
-        document.getElementById('shareBtn').addEventListener('click', () => {
-            const temp = document.createElement('textarea');
-            temp.value = "Danial & Deandra LDR Story: Distance means so little when someone means so much! ❤️";
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-
-            showToast("Tautan cinta berhasil disalin ke clipboard! 💌");
-        });
-
-        function showToast(msg) {
-            const toast = document.createElement('div');
-            toast.className = 'fixed top-16 left-1/2 -translate-x-1/2 bg-ytRed text-white text-xs font-semibold px-6 py-2.5 rounded-full shadow-2xl z-50 animate-bounce';
-            toast.innerText = msg;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // -------------------------------------------------------------
-        // LOFI ROMANTIC AUDIO SYNTHESIZER (WEB AUDIO API)
-        // -------------------------------------------------------------
-        let audioCtx = null;
-        let isPlayingAudio = false;
-        let audioTimer = null;
-
-        function playLofiMelody() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            // Lofi Chord Progression frequencies: Cmaj7 -> Am7 -> Fmaj7 -> G7
-            const melodyNotes = [261.63, 329.63, 392.00, 493.88, 220.00, 349.23, 440.00, 392.00];
-            let noteIdx = 0;
-
-            audioTimer = setInterval(() => {
-                if (!isPlayingAudio) return;
-
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(melodyNotes[noteIdx], audioCtx.currentTime);
-
-                gain.gain.setValueAtTime(0, audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.15);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.85);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.9);
-
-                noteIdx = (noteIdx + 1) % melodyNotes.length;
-            }, 650);
-        }
-
-        const musicToggleBtn = document.getElementById('musicToggleBtn');
-        const musicIcon = document.getElementById('musicIcon');
-        const musicText = document.getElementById('musicText');
-
-        musicToggleBtn.addEventListener('click', () => {
-            isPlayingAudio = !isPlayingAudio;
-            if (isPlayingAudio) {
-                playLofiMelody();
-                musicText.innerText = "Matikan Audio Lofi";
-                musicIcon.innerText = "🔊";
-                musicToggleBtn.classList.add('ring-2', 'ring-pink-400');
-            } else {
-                if (audioTimer) clearInterval(audioTimer);
-                musicText.innerText = "Putar Lofi LDR Melodies";
-                musicIcon.innerText = "🎵";
-                musicToggleBtn.classList.remove('ring-2', 'ring-pink-400');
-            }
-        });
-
-        document.getElementById('quickOpenBtn').addEventListener('click', () => {
-            openLoveModal(videosData[0]);
-        });
-
-        // -------------------------------------------------------------
-        // INITIALIZATION
-        // -------------------------------------------------------------
-        window.addEventListener('DOMContentLoaded', () => {
-            updateLdrDays();
-            renderVideoGrid();
-            setInterval(updateLdrDays, 60000);
-        });
-    </script>
+    // Initial Render
+    renderVideos();
+  </script>
 </body>
-  </html>
+</html>
